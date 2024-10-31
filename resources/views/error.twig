@@ -1,0 +1,11 @@
+<div class="wrap">
+  <h2>Something went wrong</h2>
+  <hr>
+  <div class="error"><p>{{ message }}</p></div>
+  <a href="{{ panel_url('PromoSync::mainPanel') }}">Try again</a>
+  
+
+  <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'deauthorize'}) }}">
+    <input type="submit" name="submit" class="button button-link" value="Disconnect Promo Account" />
+  </form>
+</div>

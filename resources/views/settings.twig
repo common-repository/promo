@@ -1,0 +1,107 @@
+<div class="wrap">
+  <h2><img src="{{ logo }}" style="max-height:25px;vertical-align:bottom;" /> Promo <span style="color:#ccc;">&raquo;</span> {{ business.attributes.name }}</h2>
+  {% if messages|length > 0 %}
+    {% for msg in messages %}
+      <div class="{{ msg.success?'updated':'error' }}"><p>{{ msg.message }}</p></div>
+    {% endfor %}
+  {% endif %}
+  
+  <hr>
+
+  <div class="updated">
+    <h3>Promo plugin is ready. Go forth and create!!</h3>
+    <p>New promos will be automatically created in your WordPress site. Use the promo mobile application to launch, edit, and close promotions.</p>
+    {% include '@PromoSync/links.twig' %}
+  </div>
+  
+  <h3>Your Promos</h3>
+  <table class="widefat striped table-promos">
+    <thead>
+      <tr>
+        <th><strong>ID</strong></th>
+        <th><strong>Title</strong></th>
+        <th><strong>Status</strong></th>
+        <th><strong>Type</strong></th>
+        <th><strong>Created</strong></th>
+        <th><strong>Synced</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if promotions|length > 0 %}
+        {% for promotion in promotions %}
+          <tr class="promo-item {{ promotion.synced.all?'':'promo-item-differ' }} {{ promotion.attributes.status=='draft'?'promo-item-draft':'' }}">
+            <td>{{ promotion.id }}</td>
+            <td>
+              <a class="row-title" href="{{ promotion.attributes.wordpressUrl }}" target="_blank">{{ promotion.promotionable.attributes.name|striptags }}</a>
+              <br>
+              <span class="promo-item-desc">{{ promotion.promotionable.attributes.description }}</span>
+            </td>
+            <td>{{ promotion.attributes.statusLabel }}</td>
+            <td>{{ promotion.promotionable.type }}</td>
+            <td>{{ promotion.attributes.createdAt|date('F jS, Y') }}</td>
+            <td>{{ promotion.synced.all ? 'Yes' : 'No' }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="5" style="text-align:center;"><strong>No promotions</strong></td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  <br>
+
+  <hr>
+  
+  <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'sync'}) }}">
+    <h3>Synchronize Promos with WordPress</h3>
+    <p class="submit">
+      <input type="submit" name="submit" class="button button-primary" value="Synchronize All My Promos" />
+      <br><br>
+      <span>Create, update or delete Promos that exist in your <strong>Promo.co</strong> account as WordPress posts.</span>
+    </p>
+  </form>
+
+  
+  <hr>
+  <h3>Promo Listing Page</h3>
+  {% if archive %}
+  <p>View your list of promos here: <a href="{{ archive }}" target="_blank">{{ archive }}</a></p>
+  {% else %}
+  <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'generate_archive'}) }}">
+    <p class="submit">
+      <input type="submit" name="submit" class="button button-primary" value="Create My Promo Listing Page" />
+      <br><br>
+      <span>This will generate a page that contains all of your Promos.</span>
+    </p>
+  </form>
+  {% endif  %}
+  
+  <hr>
+  
+  <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'reset'}) }}">
+    <h3>Reset data</h3>
+    <p class="submit">
+      <input type="submit" name="submit" class="button button-primary" value="Reset Promos Data" />
+      <br><br>
+      <span>This will remove all the promo posts created in your WordPress website.</span>
+    </p>
+  </form>
+  
+  <hr>
+  
+  <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'deauthorize'}) }}">
+    <h3>Log out. Disconnect my Promo account</h3>
+    <p class="submit">
+      <input type="submit" name="submit" class="button button-primary" value="Disconnect My Promo Account" />
+      <br><br>
+      <span>This will disconnect your currently associated Promo account with this WordPress installation.</span>
+    </p>
+  </form>
+
+  <hr>
+
+  <p><strong>Webhook URL:</strong> {{ webhook_url }}</p>
+
+</div>

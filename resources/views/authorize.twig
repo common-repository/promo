@@ -1,0 +1,34 @@
+<div class="wrap">
+    <h2>Authorize Your Promo Account</h2>
+    <hr>
+    <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'authorize'}) }}">
+        <table class="form-table form-table-promo">
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <label for="email">Email:</label>
+                    </th>
+                    <td>
+                        <input type="text" class="regular-text" id="email" name="email" placeholder="Email" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="password">Password:</label>
+                    </th>
+                    <td>
+                        <input type="password" class="regular-text" id="password" name="password" placeholder="Password" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="submit">
+            <input type="submit" name="submit" class="button button-primary" value="Authorize My Promo Account" />
+        </p>
+    </form>
+    <p style="color:#ddd;">
+        <a target="_blank" href="{{ links.signup }}">Create account</a> | 
+        <a target="_blank" href="{{ links.forgot }}">Forgot password</a> | 
+        <a target="_blank" href="{{ links.about }}">Learn more</a>
+    </p>
+</div>

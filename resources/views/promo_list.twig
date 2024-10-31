@@ -1,0 +1,7 @@
+<div class="promo-list  promo-{{ columns }}-cols">
+  {% for promo in promos %}
+  <div class="promo-col">
+  {% include '@PromoSync/promo.twig' with promo %}
+  </div>
+  {% endfor %}
+</div>

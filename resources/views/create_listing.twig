@@ -1,0 +1,9 @@
+<div class="wrap">
+  <h2>Promo Listing Page</h2>
+  <hr/>
+	<p>Create a page that will contain a listing of all your promos. You can do this at anytime if you don't want to do it now.</p>
+  <form method="post" style="display: inline-block;" action="{{ panel_url('PromoSync::mainPanel', {'action':'generate_archive'}) }}">
+      <input type="submit" name="submit" class="button button-primary" value="Create My Promo Listing Page" />
+  </form>
+  <a href="{{ panel_url('PromoSync::mainPanel') }}" class="button button-secondary">Not Now</a>
+</div>

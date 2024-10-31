@@ -1,0 +1,41 @@
+<div class="wrap">
+    <h2>Select Your Business</h2>
+    {% if messages|length > 0 %}
+      {% for msg in messages %}
+        <div class="{{ msg.success?'updated':'error' }}"><p>{{ msg.message }}</p></div>
+      {% endfor %}
+    {% endif %}
+    <hr>
+    <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'select_business'}) }}">
+        <table class="form-table form-table-promo">
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <label for="business_id">Businesses:</label>
+                    </th>
+                    <td>
+                        {% if businesses|length > 0 %}
+                            <select name="business_id" id="business_id">
+                                {% for business in businesses %}
+                                    <option value="{{ business.id }}">{{ business.attributes.name }}</option>
+                                {% endfor %}
+                        {% else %}
+                            <strong>No businesses detected.</strong> Please create a business in your Promo account.
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="submit">
+            <input type="submit" name="submit" class="button button-primary" value="Select Business" />
+        </p>
+    </form>
+    <form method="post" action="{{ panel_url('PromoSync::mainPanel', {'action':'deauthorize'}) }}">
+      <p class="submit">
+        <input type="submit" name="submit" class="button button-default" value="&larr; Go back to login form" />
+      </p>
+    </form>
+    <p style="color:#ddd;">
+        <a target="_blank" href="{{ links.about }}">Learn more</a>
+    </p>
+</div>

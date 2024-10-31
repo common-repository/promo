@@ -1,0 +1,176 @@
+.cf() {
+	*zoom: 1;
+	&:before, &:after {
+		content: " ";
+		display: table; 
+	}
+	&:after {
+		clear: both; 
+	}
+}
+
+.boxit() {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	&:before, &:after {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+.promo-list, .promo-list *, .promo-preview, .promo-preview * {
+	.boxit();
+}
+
+@promoGutter: 8px;
+
+.promo-list {
+	.cf();
+	.boxit();	
+	margin: @promoGutter -@promoGutter;
+	text-align: left;
+}
+
+.promo-col {
+	float: left;	
+	position: relative;
+	padding: @promoGutter;
+	width: 100%;
+}
+
+.promo-1-cols .promo-col {
+	width: 100% / 1;
+}
+
+@media only screen and (min-width: 500px) {
+	.promo-2-cols .promo-col {
+		width: 100% / 2;
+	}
+	.promo-3-cols .promo-col {
+		width: 100% / 2;
+	}
+	.promo-4-cols .promo-col {
+		width: 100% / 2;
+	}
+	.promo-5-cols .promo-col {
+		width: 100% / 2;
+	}
+	.promo-6-cols .promo-col {
+		width: 100% / 2;
+	}
+}
+
+@media only screen and (min-width: 640px) {
+	.promo-3-cols .promo-col {
+		width: 100% / 3;
+	}
+	.promo-4-cols .promo-col {
+		width: 100% / 3;
+	}
+	.promo-5-cols .promo-col {
+		width: 100% / 3;
+	}
+	.promo-6-cols .promo-col {
+		width: 100% / 3;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.promo-4-cols .promo-col {
+		width: 100% / 4;
+	}
+	.promo-5-cols .promo-col {
+		width: 100% / 4;
+	}
+	.promo-6-cols .promo-col {
+		width: 100% / 4;
+	}
+}
+
+@media only screen and (min-width: 1140px) {
+	.promo-5-cols .promo-col {
+		width: 100% / 5;
+	}
+	.promo-6-cols .promo-col {
+		width: 100% / 6;
+	}
+}
+
+.promo-preview-wrap {
+	width: 100%;
+	
+	&.left {
+		text-align: left;
+	}
+	&.right {
+		text-align: right;
+	}
+	&.center {
+		text-align: center;
+	}
+}
+
+.promo-preview {
+	.cf();
+	border: 1px solid #aaa;
+	display: inline-block;
+	text-decoration: none;
+	width: 100%;
+	
+	.thumb {
+		background-repeat: no-repeat;
+		background-size: contain;
+		padding-bottom: 100%;
+		width: 100%;
+	}	
+	
+	.content {
+		padding: 15px;
+		
+		.promo-title {
+			margin: 0;
+			padding: 0;
+			font-family: Tahoma, sans-serif;
+			line-height: 1.2em;
+			
+		}
+	}
+	
+	&.horizontal {
+		@thumb-size: 30%;
+		
+		.thumb {
+			float: left;
+			height: 0;
+			padding-bottom: @thumb-size;
+			width: @thumb-size;
+		}
+		
+		.content-wrap {
+			float: left;
+			height: 0;
+			padding-bottom: @thumb-size;
+			position: relative;
+			width: 100% - @thumb-size;
+			
+			.content {
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+		}
+	}
+	
+	&.vertical {
+		.content-wrap {
+			.content {
+				text-align: center;
+			}
+		}
+	}
+}

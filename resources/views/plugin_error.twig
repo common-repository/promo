@@ -1,0 +1,18 @@
+<div class="wrap">
+  <h2><img src="{{ logo }}" style="max-height:25px;vertical-align:bottom;" /> Promo <span style="color:#ccc;">&raquo;</span> {{ business.attributes.name }}</h2>
+
+  <div class="error">
+    <h3>There is a problem with this Promo account</h3>
+    {% if error.subheading %}
+    <p><strong>{{ error.subheading }}</strong></p>
+    {% endif %}
+    {% for msg in error.messages %}
+    <p>{{ msg | raw }}</p>
+    {% endfor %}
+    {% if error.code %}
+    <pre>{{ error.code }}</pre>
+    {% endif %}
+    <br/><br/>
+    {% include '@PromoSync/links.twig' %}
+  </div>
+</div>

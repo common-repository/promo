@@ -1,0 +1,36 @@
+.toplevel_page_promo-index .wp-menu-image img,
+.menu-icon-promo .wp-menu-image img {
+  max-width: 20px;
+}
+
+.table-promos td,
+.table-promos th {
+  max-width: 200px;
+}
+
+.form-table.form-table-promo th {
+  width: 80px;
+}
+
+.table-promos-img img {
+  vertical-align: bottom;
+}
+
+.promo-item img {
+  max-width: 50px;
+}
+
+.promo-item-desc {
+  display: inline-block;
+  max-height: 4.5em;
+  overflow: hidden;
+}
+
+tr.promo-item.promo-item-differ {
+  /*background: #F9DFD6;*/
+}
+
+tr.promo-item.promo-item-draft {
+  opacity: 0.8;
+  background: #FFFFF2;
+}
